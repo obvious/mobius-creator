@@ -17,5 +17,8 @@
 
   <actions>
     <!-- Add your actions here -->
+    <action class="dev.sasikanth.creator.CreatorAction" description="Create mobius classes" id="dev.sasikanth.creator.CreatorAction" text="Mobius Creator">
+      <add-to-group anchor="after" group-id="NewGroup" relative-to-action="NewDir" />
+    </action>
   </actions>
 </idea-plugin>
