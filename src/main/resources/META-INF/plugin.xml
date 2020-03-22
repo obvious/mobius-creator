@@ -1,0 +1,21 @@
+<idea-plugin>
+  <id>dev.sasikanth.creator</id>
+  <name>Mobius Creator</name>
+  <vendor email="sasikanthmiriyampalli@gmail.com" url="https://sasikanth.dev">Sasikanth</vendor>
+
+  <description><![CDATA[
+    Plugin to generate mobius related classes easily.
+    ]]></description>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+</idea-plugin>

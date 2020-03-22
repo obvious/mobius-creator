@@ -1,0 +1,9 @@
+# Default ignored files
+/$CACHE_FILE$
+/androidDexCompiler.xml
+/gradle.xml
+/jarRepositories.xml
+/misc.xml
+/vcs.xml
+/workspace.xml
+/dictionaries
