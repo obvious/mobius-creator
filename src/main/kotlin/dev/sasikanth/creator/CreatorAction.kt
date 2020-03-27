@@ -5,6 +5,7 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.actionSystem.LangDataKeys
+import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiDirectory
 import com.intellij.psi.impl.file.PsiDirectoryFactory
@@ -34,24 +35,29 @@ class CreatorAction : AnAction() {
 
     val dialog = CreatorDialog(basePackageName)
     if (dialog.showAndGet()) {
-      val generatorConfig = dialog.generatorConfig
+      ProgressManager.getInstance().runProcessWithProgressSynchronously({
+        val generatorConfig = dialog.generatorConfig
 
-      generatorConfig.mobiusComponents.forEach { component ->
-        val generatedFileSpec = when (component) {
-          is MobiusComponent.Model -> ModelGenerator.generate(generatorConfig)
+        generatorConfig.mobiusComponents.forEach { component ->
+          val generatedFileSpec = when (component) {
+            is MobiusComponent.Model -> ModelGenerator.generate(generatorConfig)
 
-          is MobiusComponent.Event -> EventGenerator.generate(generatorConfig)
+            is MobiusComponent.Event -> EventGenerator.generate(generatorConfig)
 
-          is MobiusComponent.Effect -> EffectGenerator.generate(generatorConfig)
+            is MobiusComponent.Effect -> EffectGenerator.generate(generatorConfig)
 
-          is MobiusComponent.Init -> InitGenerator.generate(generatorConfig)
+            is MobiusComponent.Init -> InitGenerator.generate(generatorConfig)
 
-          is MobiusComponent.Update -> UpdateGenerator.generate(generatorConfig)
+            is MobiusComponent.Update -> UpdateGenerator.generate(generatorConfig)
 
-          is MobiusComponent.EffectHandler -> EffectHandlerGenerator.generate(generatorConfig)
+            is MobiusComponent.EffectHandler -> EffectHandlerGenerator.generate(generatorConfig)
+          }
+
+          generatedFileSpec.writeTo(File(rootPackagePath))
+          // Refreshing directory once files are created
+          packageRoot.virtualFile.refresh(false, true)
         }
-        generatedFileSpec.writeTo(File(rootPackagePath))
-      }
+      }, "Creating files", false, project)
     }
   }
 
