@@ -9,6 +9,14 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiDirectory
 import com.intellij.psi.impl.file.PsiDirectoryFactory
 import com.intellij.util.PlatformIcons
+import dev.sasikanth.creator.codegen.EffectGenerator
+import dev.sasikanth.creator.codegen.EffectHandlerGenerator
+import dev.sasikanth.creator.codegen.EventGenerator
+import dev.sasikanth.creator.codegen.InitGenerator
+import dev.sasikanth.creator.codegen.ModelGenerator
+import dev.sasikanth.creator.codegen.UpdateGenerator
+import dev.sasikanth.creator.model.MobiusComponent
+import java.io.File
 
 class CreatorAction : AnAction() {
 
@@ -22,8 +30,29 @@ class CreatorAction : AnAction() {
 
     val packageRoot = getPackageRoot(project, directory)
     val basePackageName = buildBasePackageName(packageRoot, directory)
+    val rootPackagePath = packageRoot.virtualFile.path
 
-    CreatorDialog(basePackageName)
+    val dialog = CreatorDialog(basePackageName)
+    if (dialog.showAndGet()) {
+      val generatorConfig = dialog.generatorConfig
+
+      generatorConfig.mobiusComponents.forEach { component ->
+        val generatedFileSpec = when (component) {
+          is MobiusComponent.Model -> ModelGenerator.generate(generatorConfig)
+
+          is MobiusComponent.Event -> EventGenerator.generate(generatorConfig)
+
+          is MobiusComponent.Effect -> EffectGenerator.generate(generatorConfig)
+
+          is MobiusComponent.Init -> InitGenerator.generate(generatorConfig)
+
+          is MobiusComponent.Update -> UpdateGenerator.generate(generatorConfig)
+
+          is MobiusComponent.EffectHandler -> EffectHandlerGenerator.generate(generatorConfig)
+        }
+        generatedFileSpec.writeTo(File(rootPackagePath))
+      }
+    }
   }
 
   override fun update(event: AnActionEvent) {
