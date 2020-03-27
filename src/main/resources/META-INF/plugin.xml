@@ -4,12 +4,12 @@
   <vendor email="sasikanthmiriyampalli@gmail.com" url="https://sasikanth.dev">Sasikanth</vendor>
 
   <description><![CDATA[
-    Plugin to generate mobius related classes easily.
+    Plugin to generate mobius related classes.
     ]]></description>
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
        on how to target different products -->
-  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.lang</depends>
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
