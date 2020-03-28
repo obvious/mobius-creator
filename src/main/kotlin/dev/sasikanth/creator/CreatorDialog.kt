@@ -126,6 +126,13 @@ class CreatorDialog(basePackageName: String) : DialogWrapper(true) {
       return
     }
 
+    if (components.contains(MobiusComponent.Update)) {
+      if (components.contains(MobiusComponent.Model).not() || components.contains(MobiusComponent.Event).not()) {
+        showErrorMessage("Model & Event are necessary to generate Update")
+        return
+      }
+    }
+
     _generatorConfig = generatorConfig.copy(
       packageName = packageName,
       className = className,
