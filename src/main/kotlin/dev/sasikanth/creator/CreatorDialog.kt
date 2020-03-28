@@ -133,6 +133,16 @@ class CreatorDialog(basePackageName: String) : DialogWrapper(true) {
       }
     }
 
+    if (components.contains(MobiusComponent.EffectHandler)) {
+      if (components.contains(MobiusComponent.Model).not() ||
+        components.contains(MobiusComponent.Event).not() ||
+        components.contains(MobiusComponent.Effect).not()
+      ) {
+        showErrorMessage("Model, Event & Effect are necessary to generate EffectHandler")
+        return
+      }
+    }
+
     _generatorConfig = generatorConfig.copy(
       packageName = packageName,
       className = className,
