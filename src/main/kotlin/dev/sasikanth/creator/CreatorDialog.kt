@@ -3,11 +3,15 @@ package dev.sasikanth.creator
 import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.openapi.ui.Messages
 import com.intellij.ui.components.JBCheckBox
+import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBTextField
-import com.intellij.ui.layout.panel
 import dev.sasikanth.creator.model.GeneratorConfig
 import dev.sasikanth.creator.model.MobiusComponent
+import java.awt.Dimension
+import java.awt.Font
+import javax.swing.GroupLayout
 import javax.swing.JComponent
+import javax.swing.JPanel
 
 class CreatorDialog(basePackageName: String) : DialogWrapper(true) {
   private var _generatorConfig = GeneratorConfig(packageName = basePackageName)
@@ -30,19 +34,69 @@ class CreatorDialog(basePackageName: String) : DialogWrapper(true) {
   }
 
   override fun createCenterPanel(): JComponent? {
-    return panel {
-      row(label = "Package name: ") { packageNameTextField() }
-      row(label = "Class name: ") { classNameTextField() }
-
-      titledRow("Select components to create") {}
-
-      row { modelComponentCheckBox() }
-      row { eventComponentCheckBox() }
-      row { effectComponentCheckBox() }
-      row { initComponentCheckBox() }
-      row { updateComponentCheckBox() }
-      row { effectHandlerComponentCheckBox() }
+    val dialogPanel = JPanel().apply {
+      preferredSize = Dimension(450, 350)
     }
+    val layout = GroupLayout(dialogPanel).apply {
+      autoCreateGaps = true
+      autoCreateContainerGaps = true
+      dialogPanel.layout = this
+    }
+
+    val packageNameLabel = JBLabel("Package name: ")
+    val classNameLabel = JBLabel("Class name: ")
+    val componentsLabel = JBLabel("Select components to create").apply {
+      font = font.deriveFont(font.style or Font.BOLD)
+    }
+
+    layout.setHorizontalGroup(
+      layout.createParallelGroup()
+        .addGroup(
+          layout.createSequentialGroup()
+            .addGroup(
+              layout.createParallelGroup()
+                .addComponent(packageNameLabel)
+                .addComponent(classNameLabel)
+            )
+            .addGroup(
+              layout.createParallelGroup()
+                .addComponent(packageNameTextField)
+                .addComponent(classNameTextField)
+            )
+        )
+        .addGap(16)
+        .addComponent(componentsLabel)
+        .addComponent(modelComponentCheckBox)
+        .addComponent(eventComponentCheckBox)
+        .addComponent(effectComponentCheckBox)
+        .addComponent(initComponentCheckBox)
+        .addComponent(updateComponentCheckBox)
+        .addComponent(effectHandlerComponentCheckBox)
+    )
+
+    layout.setVerticalGroup(
+      layout.createSequentialGroup()
+        .addGroup(
+          layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+            .addComponent(packageNameLabel)
+            .addComponent(packageNameTextField)
+        )
+        .addGroup(
+          layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+            .addComponent(classNameLabel)
+            .addComponent(classNameTextField)
+        )
+        .addGap(16)
+        .addComponent(componentsLabel)
+        .addComponent(modelComponentCheckBox)
+        .addComponent(eventComponentCheckBox)
+        .addComponent(effectComponentCheckBox)
+        .addComponent(initComponentCheckBox)
+        .addComponent(updateComponentCheckBox)
+        .addComponent(effectHandlerComponentCheckBox)
+    )
+
+    return dialogPanel
   }
 
   override fun doOKAction() {
@@ -73,9 +127,9 @@ class CreatorDialog(basePackageName: String) : DialogWrapper(true) {
     }
 
     _generatorConfig = generatorConfig.copy(
-        packageName = packageName,
-        className = className,
-        mobiusComponents = components
+      packageName = packageName,
+      className = className,
+      mobiusComponents = components
     )
 
     super.doOKAction()
