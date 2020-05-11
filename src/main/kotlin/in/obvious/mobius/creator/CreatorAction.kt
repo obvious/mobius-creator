@@ -1,5 +1,14 @@
-package dev.sasikanth.creator
+package `in`.obvious.mobius.creator
 
+import `in`.obvious.mobius.creator.codegen.EffectGenerator
+import `in`.obvious.mobius.creator.codegen.EffectHandlerGenerator
+import `in`.obvious.mobius.creator.codegen.EventGenerator
+import `in`.obvious.mobius.creator.codegen.InitGenerator
+import `in`.obvious.mobius.creator.codegen.ModelGenerator
+import `in`.obvious.mobius.creator.codegen.UpdateGenerator
+import `in`.obvious.mobius.creator.model.MobiusComponent
+import `in`.obvious.mobius.creator.util.Constants
+import `in`.obvious.mobius.creator.util.DependencyHandler
 import com.intellij.ide.util.DirectoryChooserUtil
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -10,15 +19,6 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiDirectory
 import com.intellij.psi.impl.file.PsiDirectoryFactory
 import com.intellij.util.PlatformIcons
-import dev.sasikanth.creator.codegen.EffectGenerator
-import dev.sasikanth.creator.codegen.EffectHandlerGenerator
-import dev.sasikanth.creator.codegen.EventGenerator
-import dev.sasikanth.creator.codegen.InitGenerator
-import dev.sasikanth.creator.codegen.ModelGenerator
-import dev.sasikanth.creator.codegen.UpdateGenerator
-import dev.sasikanth.creator.model.MobiusComponent
-import dev.sasikanth.creator.util.Constants
-import dev.sasikanth.creator.util.DependencyHandler
 import java.io.File
 
 class CreatorAction : AnAction() {

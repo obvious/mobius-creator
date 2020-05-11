@@ -1,12 +1,12 @@
-package dev.sasikanth.creator
+package `in`.obvious.mobius.creator
 
+import `in`.obvious.mobius.creator.model.GeneratorConfig
+import `in`.obvious.mobius.creator.model.MobiusComponent
 import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.openapi.ui.Messages
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBTextField
-import dev.sasikanth.creator.model.GeneratorConfig
-import dev.sasikanth.creator.model.MobiusComponent
 import java.awt.Dimension
 import java.awt.Font
 import javax.swing.GroupLayout

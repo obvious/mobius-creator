@@ -1,4 +1,4 @@
-package dev.sasikanth.creator.model
+package `in`.obvious.mobius.creator.model
 
 data class GeneratorConfig(
   val packageName: String = "",

@@ -1,14 +1,14 @@
-package dev.sasikanth.creator.codegen
+package `in`.obvious.mobius.creator.codegen
 
+import `in`.obvious.mobius.creator.model.GeneratorConfig
+import `in`.obvious.mobius.creator.util.Constants.RX_MOBIUS_PACKAGE_NAME
+import `in`.obvious.mobius.creator.util.Constants.RX_PACKAGE_NAME
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.TypeSpec
-import dev.sasikanth.creator.model.GeneratorConfig
-import dev.sasikanth.creator.util.Constants.RX_MOBIUS_PACKAGE_NAME
-import dev.sasikanth.creator.util.Constants.RX_PACKAGE_NAME
 
 object EffectHandlerGenerator : FileGenerator {
   override fun generate(generatorConfig: GeneratorConfig): FileSpec {

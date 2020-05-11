@@ -1,5 +1,5 @@
 <idea-plugin>
-  <id>dev.sasikanth.creator</id>
+  <id>in.obvious.mobius.creator</id>
   <name>Mobius Creator</name>
   <vendor email="sasikanthmiriyampalli@gmail.com" url="https://sasikanth.dev">Sasikanth</vendor>
 
@@ -21,7 +21,8 @@
 
   <actions>
     <!-- Add your actions here -->
-    <action class="dev.sasikanth.creator.CreatorAction" description="Create mobius classes" id="dev.sasikanth.creator.CreatorAction" text="Mobius Creator">
+    <action class="in.obvious.mobius.creator.CreatorAction" description="Create mobius classes" id="in.obvious.mobius.creator.CreatorAction"
+      text="Mobius Creator">
       <add-to-group anchor="after" group-id="NewGroup" relative-to-action="NewDir" />
     </action>
   </actions>

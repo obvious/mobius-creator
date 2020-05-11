@@ -1,4 +1,4 @@
-package dev.sasikanth.creator.util
+package `in`.obvious.mobius.creator.util
 
 import com.android.ide.common.repository.GradleCoordinate
 import com.android.tools.idea.projectsystem.getModuleSystem

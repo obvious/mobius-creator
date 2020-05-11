@@ -1,4 +1,4 @@
-package dev.sasikanth.creator.util
+package `in`.obvious.mobius.creator.util
 
 enum class ScopeType {
   MAIN,

@@ -1,10 +1,8 @@
-package dev.sasikanth.creator.codegen
+package `in`.obvious.mobius.creator.codegen
 
+import `in`.obvious.mobius.creator.model.GeneratorConfig
+import `in`.obvious.mobius.creator.model.MobiusComponent
 import com.google.common.truth.Truth.assertThat
-import dev.sasikanth.creator.model.GeneratorConfig
-import dev.sasikanth.creator.model.MobiusComponent.Effect
-import dev.sasikanth.creator.model.MobiusComponent.EffectHandler
-import dev.sasikanth.creator.model.MobiusComponent.Event
 import org.junit.Test
 
 class EffectHandlerGeneratorTest {
@@ -13,12 +11,12 @@ class EffectHandlerGeneratorTest {
   fun `generate effect handler code correctly`() {
     // given
     val generatorConfig = GeneratorConfig(
-      packageName = "dev.sasikanth.login",
+      packageName = "in.obvious.login",
       className = "Login",
-      mobiusComponents = listOf(Event, Effect, EffectHandler)
+      mobiusComponents = listOf(MobiusComponent.Event, MobiusComponent.Effect, MobiusComponent.EffectHandler)
     )
     val expectedGeneratedCode = """
-      |package dev.sasikanth.login
+      |package in.obvious.login
       |
       |import com.spotify.mobius.rx2.RxMobius
       |import io.reactivex.ObservableTransformer
