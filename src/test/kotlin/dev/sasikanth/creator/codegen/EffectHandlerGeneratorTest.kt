@@ -24,14 +24,9 @@ class EffectHandlerGeneratorTest {
       |import io.reactivex.ObservableTransformer
       |
       |class LoginEffectHandler {
-      |  private fun buildEffectHandler(): ObservableTransformer<LoginEffect, LoginEvent> = RxMobius
+      |  fun build(): ObservableTransformer<LoginEffect, LoginEvent> = RxMobius
       |      .subtypeEffectHandler<LoginEffect, LoginEvent>()
       |      .build()
-      |
-      |  companion object {
-      |    fun create(): ObservableTransformer<LoginEffect, LoginEvent> =
-      |        LoginEffectHandler().buildEffectHandler()
-      |  }
       |}
       |
     """.trimMargin()

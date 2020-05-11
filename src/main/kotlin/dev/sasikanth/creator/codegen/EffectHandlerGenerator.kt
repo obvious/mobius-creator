@@ -24,23 +24,9 @@ object EffectHandlerGenerator : FileGenerator {
     return FileSpec.builder(packageName, className + "EffectHandler")
       .addType(
         TypeSpec.classBuilder(loginEffectHandlerClassName)
-          .addType(
-            TypeSpec.companionObjectBuilder()
-              .addFunction(
-                FunSpec.builder("create")
-                  .returns(transformerClassName.parameterizedBy(effectClassName, eventClassName))
-                  .addStatement(
-                    """
-                    return %T().buildEffectHandler()
-                  """.trimIndent(), loginEffectHandlerClassName
-                  )
-                  .build()
-              )
-              .build()
-          )
           .addFunction(
-            FunSpec.builder("buildEffectHandler")
-              .addModifiers(KModifier.PRIVATE)
+            FunSpec.builder("build")
+              .addModifiers(KModifier.PUBLIC)
               .returns(transformerClassName.parameterizedBy(effectClassName, eventClassName))
               .addStatement(
                 """
