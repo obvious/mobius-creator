@@ -35,29 +35,13 @@ class CreatorAction : AnAction() {
 
     val dialog = CreatorDialog(basePackageName)
     if (dialog.showAndGet()) {
-      ProgressManager.getInstance().runProcessWithProgressSynchronously({
-        val generatorConfig = dialog.generatorConfig
-
-        generatorConfig.mobiusComponents.forEach { component ->
-          val generatedFileSpec = when (component) {
-            is MobiusComponent.Model -> ModelGenerator.generate(generatorConfig)
-
-            is MobiusComponent.Event -> EventGenerator.generate(generatorConfig)
-
-            is MobiusComponent.Effect -> EffectGenerator.generate(generatorConfig)
-
-            is MobiusComponent.Init -> InitGenerator.generate(generatorConfig)
-
-            is MobiusComponent.Update -> UpdateGenerator.generate(generatorConfig)
-
-            is MobiusComponent.EffectHandler -> EffectHandlerGenerator.generate(generatorConfig)
-          }
-
-          generatedFileSpec.writeTo(File(rootPackagePath))
-          // Refreshing directory once files are created
-          packageRoot.virtualFile.refresh(false, true)
-        }
-      }, "Creating files", false, project)
+      ProgressManager.getInstance()
+        .runProcessWithProgressSynchronously(
+          generateFiles(dialog, rootPackagePath, packageRoot),
+          "Creating files",
+          false,
+          project
+        )
     }
   }
 
@@ -89,6 +73,36 @@ class CreatorAction : AnAction() {
     }
 
     presentation.isEnabledAndVisible = isPackage
+  }
+
+  private fun generateFiles(
+    dialog: CreatorDialog,
+    rootPackagePath: String,
+    packageRoot: PsiDirectory
+  ): Runnable {
+    return Runnable {
+      val generatorConfig = dialog.generatorConfig
+
+      generatorConfig.mobiusComponents.forEach { component ->
+        val generatedFileSpec = when (component) {
+          is MobiusComponent.Model -> ModelGenerator.generate(generatorConfig)
+
+          is MobiusComponent.Event -> EventGenerator.generate(generatorConfig)
+
+          is MobiusComponent.Effect -> EffectGenerator.generate(generatorConfig)
+
+          is MobiusComponent.Init -> InitGenerator.generate(generatorConfig)
+
+          is MobiusComponent.Update -> UpdateGenerator.generate(generatorConfig)
+
+          is MobiusComponent.EffectHandler -> EffectHandlerGenerator.generate(generatorConfig)
+        }
+
+        generatedFileSpec.writeTo(File(rootPackagePath))
+        // Refreshing directory once files are created
+        packageRoot.virtualFile.refresh(false, true)
+      }
+    }
   }
 
   private fun getPackageRoot(project: Project, selectedDirectory: PsiDirectory): PsiDirectory {
