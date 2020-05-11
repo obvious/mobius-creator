@@ -12,6 +12,9 @@ A simple IntelliJ plugin for creating mobius files from new file menu.
 ![Screen 2](/screenshots/2.png)
 
 ## TODO
-- Add mobius gradle dependencies to module level gradle file if not present.
+- ~~Add mobius gradle dependencies to module level gradle file if not present.~~
 - Give option to create either standard effect handler or rxmobius effect handler.
 - Create mobius test classes.
+
+## Maintainers
+- Sasikanth Miriyampalli (https://github.com/msasikanth)
