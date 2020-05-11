@@ -7,11 +7,11 @@ import dev.sasikanth.creator.model.GeneratorConfig
 object ModelGenerator : FileGenerator {
 
   override fun generate(generatorConfig: GeneratorConfig): FileSpec {
-    val className = generatorConfig.className
+    val modelClassName = generatorConfig.className + "Model"
 
-    return FileSpec.builder(generatorConfig.packageName, className + "Model")
+    return FileSpec.builder(generatorConfig.packageName, modelClassName)
       .addType(
-        TypeSpec.classBuilder(className + "Model")
+        TypeSpec.classBuilder(modelClassName)
           .build()
       )
       .build()

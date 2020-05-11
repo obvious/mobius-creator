@@ -8,14 +8,14 @@ import dev.sasikanth.creator.model.GeneratorConfig
 object EffectGenerator : FileGenerator {
 
   override fun generate(generatorConfig: GeneratorConfig): FileSpec {
-    val className = generatorConfig.className
+    val effectClassName = generatorConfig.className + "Effect"
 
-    return FileSpec.builder(generatorConfig.packageName, className + "Effect")
-        .addType(
-            TypeSpec.classBuilder(className + "Effect")
-                .addModifiers(SEALED)
-                .build()
-        )
-        .build()
+    return FileSpec.builder(generatorConfig.packageName, effectClassName)
+      .addType(
+        TypeSpec.classBuilder(effectClassName)
+          .addModifiers(SEALED)
+          .build()
+      )
+      .build()
   }
 }

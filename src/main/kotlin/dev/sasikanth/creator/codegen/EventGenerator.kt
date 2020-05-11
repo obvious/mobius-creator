@@ -8,11 +8,11 @@ import dev.sasikanth.creator.model.GeneratorConfig
 object EventGenerator : FileGenerator {
 
   override fun generate(generatorConfig: GeneratorConfig): FileSpec {
-    val className = generatorConfig.className
+    val eventClassName = generatorConfig.className + "Event"
 
-    return FileSpec.builder(generatorConfig.packageName, className + "Event")
+    return FileSpec.builder(generatorConfig.packageName, eventClassName)
       .addType(
-        TypeSpec.classBuilder(className + "Event")
+        TypeSpec.classBuilder(eventClassName)
           .addModifiers(KModifier.SEALED)
           .build()
       )
