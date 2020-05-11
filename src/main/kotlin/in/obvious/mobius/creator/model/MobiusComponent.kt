@@ -1,4 +1,4 @@
-package dev.sasikanth.creator.model
+package `in`.obvious.mobius.creator.model
 
 sealed class MobiusComponent {
   object Model : MobiusComponent()

@@ -1,8 +1,8 @@
-package dev.sasikanth.creator.codegen
+package `in`.obvious.mobius.creator.codegen
 
+import `in`.obvious.mobius.creator.model.GeneratorConfig
+import `in`.obvious.mobius.creator.model.MobiusComponent
 import com.google.common.truth.Truth.assertThat
-import dev.sasikanth.creator.model.GeneratorConfig
-import dev.sasikanth.creator.model.MobiusComponent.Init
 import org.junit.Test
 
 class InitGeneratorTest {
@@ -11,12 +11,12 @@ class InitGeneratorTest {
   fun `generate init code correctly`() {
     // given
     val generatorConfig = GeneratorConfig(
-      packageName = "dev.sasikanth.login",
+      packageName = "in.obvious.login",
       className = "Login",
-      mobiusComponents = listOf(Init)
+      mobiusComponents = listOf(MobiusComponent.Init)
     )
     val expectedGeneratedCode = """
-      |package dev.sasikanth.login
+      |package `in`.obvious.login
       |
       |import com.spotify.mobius.First
       |import com.spotify.mobius.First.first

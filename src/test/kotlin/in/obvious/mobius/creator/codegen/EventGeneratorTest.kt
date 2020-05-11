@@ -1,8 +1,8 @@
-package dev.sasikanth.creator.codegen
+package `in`.obvious.mobius.creator.codegen
 
+import `in`.obvious.mobius.creator.model.GeneratorConfig
+import `in`.obvious.mobius.creator.model.MobiusComponent
 import com.google.common.truth.Truth.assertThat
-import dev.sasikanth.creator.model.GeneratorConfig
-import dev.sasikanth.creator.model.MobiusComponent.Event
 import org.junit.Test
 
 class EventGeneratorTest {
@@ -11,12 +11,12 @@ class EventGeneratorTest {
   fun `generate event code correctly`() {
     // given
     val generatorConfig = GeneratorConfig(
-      packageName = "dev.sasikanth.login",
+      packageName = "in.obvious.login",
       className = "Login",
-      mobiusComponents = listOf(Event)
+      mobiusComponents = listOf(MobiusComponent.Event)
     )
     val expectedGeneratedCode = """
-      |package dev.sasikanth.login
+      |package `in`.obvious.login
       |
       |sealed class LoginEvent
       |

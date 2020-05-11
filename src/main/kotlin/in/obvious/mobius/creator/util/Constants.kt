@@ -1,4 +1,4 @@
-package dev.sasikanth.creator.util
+package `in`.obvious.mobius.creator.util
 
 object Constants {
   const val MOBIUS_PACKAGE_NAME = "com.spotify.mobius"

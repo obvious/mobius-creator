@@ -1,10 +1,8 @@
-package dev.sasikanth.creator.codegen
+package `in`.obvious.mobius.creator.codegen
 
+import `in`.obvious.mobius.creator.model.GeneratorConfig
+import `in`.obvious.mobius.creator.model.MobiusComponent
 import com.google.common.truth.Truth.assertThat
-import dev.sasikanth.creator.model.GeneratorConfig
-import dev.sasikanth.creator.model.MobiusComponent.Effect
-import dev.sasikanth.creator.model.MobiusComponent.Event
-import dev.sasikanth.creator.model.MobiusComponent.Update
 import org.junit.Test
 
 class UpdateGeneratorTest {
@@ -13,12 +11,12 @@ class UpdateGeneratorTest {
   fun `generate update code correctly`() {
     // given
     val generatorConfig = GeneratorConfig(
-      packageName = "dev.sasikanth.login",
+      packageName = "in.obvious.login",
       className = "Login",
-      mobiusComponents = listOf(Event, Effect, Update)
+      mobiusComponents = listOf(MobiusComponent.Event, MobiusComponent.Effect, MobiusComponent.Update)
     )
     val expectedGeneratedCode = """
-      |package dev.sasikanth.login
+      |package `in`.obvious.login
       |
       |import com.spotify.mobius.Next
       |import com.spotify.mobius.Next.noChange

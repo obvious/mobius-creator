@@ -1,8 +1,8 @@
-package dev.sasikanth.creator.codegen
+package `in`.obvious.mobius.creator.codegen
 
+import `in`.obvious.mobius.creator.model.GeneratorConfig
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.TypeSpec
-import dev.sasikanth.creator.model.GeneratorConfig
 
 object ModelGenerator : FileGenerator {
 
