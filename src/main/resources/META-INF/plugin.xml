@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>in.obvious.mobius.creator</id>
   <name>Mobius Creator</name>
-  <vendor email="sasikanthmiriyampalli@gmail.com" url="https://sasikanth.dev">Sasikanth</vendor>
+  <vendor email="sasikanth@obvious.in" url="https://github.com/obvious/mobius-creator">obvious</vendor>
 
   <description><![CDATA[
     Plugin to generate mobius related classes.
