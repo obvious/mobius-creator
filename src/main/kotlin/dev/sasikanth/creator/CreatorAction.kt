@@ -17,6 +17,8 @@ import dev.sasikanth.creator.codegen.InitGenerator
 import dev.sasikanth.creator.codegen.ModelGenerator
 import dev.sasikanth.creator.codegen.UpdateGenerator
 import dev.sasikanth.creator.model.MobiusComponent
+import dev.sasikanth.creator.util.Constants
+import dev.sasikanth.creator.util.DependencyHandler
 import java.io.File
 
 class CreatorAction : AnAction() {
@@ -37,7 +39,7 @@ class CreatorAction : AnAction() {
     if (dialog.showAndGet()) {
       ProgressManager.getInstance()
         .runProcessWithProgressSynchronously(
-          generateFiles(dialog, rootPackagePath, packageRoot),
+          generateFiles(directory, dialog, rootPackagePath, packageRoot),
           "Creating files",
           false,
           project
@@ -76,11 +78,15 @@ class CreatorAction : AnAction() {
   }
 
   private fun generateFiles(
+    directory: PsiDirectory,
     dialog: CreatorDialog,
     rootPackagePath: String,
     packageRoot: PsiDirectory
   ): Runnable {
     return Runnable {
+      // Adding Mobius gradle dependencies
+      addMobiusDependencies(directory)
+
       val generatorConfig = dialog.generatorConfig
 
       generatorConfig.mobiusComponents.forEach { component ->
@@ -102,6 +108,14 @@ class CreatorAction : AnAction() {
         // Refreshing directory once files are created
         packageRoot.virtualFile.refresh(false, true)
       }
+    }
+  }
+
+  private fun addMobiusDependencies(directory: PsiDirectory) {
+    // Getting the module based on the directory from which the creator is opened.
+    val dependencyHandler = DependencyHandler(directory)
+    Constants.mobiusArtifacts.forEach { artifact ->
+      dependencyHandler.addDependency(artifact)
     }
   }
 
