@@ -84,10 +84,12 @@ class CreatorAction : AnAction() {
     packageRoot: PsiDirectory
   ): Runnable {
     return Runnable {
-      // Adding Mobius gradle dependencies
-      addMobiusDependencies(directory)
-
       val generatorConfig = dialog.generatorConfig
+
+      if (generatorConfig.addDependencyEnabled) {
+        // Adding Mobius gradle dependencies
+        addMobiusDependencies(directory)
+      }
 
       generatorConfig.mobiusComponents.forEach { component ->
         val generatedFileSpec = when (component) {
