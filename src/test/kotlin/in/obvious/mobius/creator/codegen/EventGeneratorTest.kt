@@ -13,6 +13,7 @@ class EventGeneratorTest {
     val generatorConfig = GeneratorConfig(
       packageName = "in.obvious.login",
       className = "Login",
+      addDependencyEnabled = true,
       mobiusComponents = listOf(MobiusComponent.Event)
     )
     val expectedGeneratedCode = """

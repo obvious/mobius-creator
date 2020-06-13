@@ -11,9 +11,10 @@ class EffectGeneratorTest {
   fun `generate effect code correctly`() {
     // given
     val generatorConfig = GeneratorConfig(
-        packageName = "in.obvious.login",
-        className = "Login",
-        mobiusComponents = listOf(MobiusComponent.Effect)
+      packageName = "in.obvious.login",
+      className = "Login",
+      addDependencyEnabled = true,
+      mobiusComponents = listOf(MobiusComponent.Effect)
     )
     val expectedGeneratedCode = """
       |package `in`.obvious.login

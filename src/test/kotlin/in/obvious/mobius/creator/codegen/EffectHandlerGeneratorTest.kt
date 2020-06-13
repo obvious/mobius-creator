@@ -13,6 +13,7 @@ class EffectHandlerGeneratorTest {
     val generatorConfig = GeneratorConfig(
       packageName = "in.obvious.login",
       className = "Login",
+      addDependencyEnabled = true,
       mobiusComponents = listOf(MobiusComponent.Event, MobiusComponent.Effect, MobiusComponent.EffectHandler)
     )
     val expectedGeneratedCode = """

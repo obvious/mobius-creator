@@ -13,6 +13,7 @@ class ModelGeneratorTest {
     val generatorConfig = GeneratorConfig(
       packageName = "in.obvious.login",
       className = "Login",
+      addDependencyEnabled = true,
       mobiusComponents = listOf(MobiusComponent.Model)
     )
     val expectedGeneratedCode = """

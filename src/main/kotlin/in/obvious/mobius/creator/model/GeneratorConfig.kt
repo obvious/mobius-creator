@@ -3,6 +3,7 @@ package `in`.obvious.mobius.creator.model
 data class GeneratorConfig(
   val packageName: String = "",
   val className: String = "",
+  val addDependencyEnabled: Boolean = true,
   val mobiusComponents: List<MobiusComponent> = emptyList()
 ) {
 
