@@ -50,53 +50,81 @@ class CreatorDialog(basePackageName: String) : DialogWrapper(true) {
     }
 
     layout.setHorizontalGroup(
-      layout.createParallelGroup()
-        .addGroup(
-          layout.createSequentialGroup()
-            .addGroup(
-              layout.createParallelGroup()
-                .addComponent(packageNameLabel)
-                .addComponent(classNameLabel)
-            )
-            .addGroup(
-              layout.createParallelGroup()
-                .addComponent(packageNameTextField)
-                .addComponent(classNameTextField)
-            )
-        )
-        .addGap(16)
-        .addComponent(componentsLabel)
-        .addComponent(modelComponentCheckBox)
-        .addComponent(eventComponentCheckBox)
-        .addComponent(effectComponentCheckBox)
-        .addComponent(initComponentCheckBox)
-        .addComponent(updateComponentCheckBox)
-        .addComponent(effectHandlerComponentCheckBox)
+      createHorizontalGroup(
+        layout,
+        packageNameLabel,
+        classNameLabel,
+        componentsLabel
+      )
     )
 
     layout.setVerticalGroup(
-      layout.createSequentialGroup()
-        .addGroup(
-          layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-            .addComponent(packageNameLabel)
-            .addComponent(packageNameTextField)
-        )
-        .addGroup(
-          layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-            .addComponent(classNameLabel)
-            .addComponent(classNameTextField)
-        )
-        .addGap(16)
-        .addComponent(componentsLabel)
-        .addComponent(modelComponentCheckBox)
-        .addComponent(eventComponentCheckBox)
-        .addComponent(effectComponentCheckBox)
-        .addComponent(initComponentCheckBox)
-        .addComponent(updateComponentCheckBox)
-        .addComponent(effectHandlerComponentCheckBox)
+      createVerticalGroup(
+        layout,
+        packageNameLabel,
+        classNameLabel,
+        componentsLabel
+      )
     )
 
     return dialogPanel
+  }
+
+  private fun createVerticalGroup(
+    layout: GroupLayout,
+    packageNameLabel: JBLabel,
+    classNameLabel: JBLabel,
+    componentsLabel: JBLabel
+  ): GroupLayout.SequentialGroup? {
+    return layout.createSequentialGroup()
+      .addGroup(
+        layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+          .addComponent(packageNameLabel)
+          .addComponent(packageNameTextField)
+      )
+      .addGroup(
+        layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+          .addComponent(classNameLabel)
+          .addComponent(classNameTextField)
+      )
+      .addGap(16)
+      .addComponent(componentsLabel)
+      .addComponent(modelComponentCheckBox)
+      .addComponent(eventComponentCheckBox)
+      .addComponent(effectComponentCheckBox)
+      .addComponent(initComponentCheckBox)
+      .addComponent(updateComponentCheckBox)
+      .addComponent(effectHandlerComponentCheckBox)
+  }
+
+  private fun createHorizontalGroup(
+    layout: GroupLayout,
+    packageNameLabel: JBLabel,
+    classNameLabel: JBLabel,
+    componentsLabel: JBLabel
+  ): GroupLayout.ParallelGroup? {
+    return layout.createParallelGroup()
+      .addGroup(
+        layout.createSequentialGroup()
+          .addGroup(
+            layout.createParallelGroup()
+              .addComponent(packageNameLabel)
+              .addComponent(classNameLabel)
+          )
+          .addGroup(
+            layout.createParallelGroup()
+              .addComponent(packageNameTextField)
+              .addComponent(classNameTextField)
+          )
+      )
+      .addGap(16)
+      .addComponent(componentsLabel)
+      .addComponent(modelComponentCheckBox)
+      .addComponent(eventComponentCheckBox)
+      .addComponent(effectComponentCheckBox)
+      .addComponent(initComponentCheckBox)
+      .addComponent(updateComponentCheckBox)
+      .addComponent(effectHandlerComponentCheckBox)
   }
 
   override fun doOKAction() {
