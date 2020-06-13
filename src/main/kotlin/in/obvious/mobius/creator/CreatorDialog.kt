@@ -21,6 +21,7 @@ class CreatorDialog(basePackageName: String) : DialogWrapper(true) {
   private val packageNameTextField = JBTextField(generatorConfig.packageName)
   private val classNameTextField = JBTextField()
 
+  private val dependencyCheckBox = JBCheckBox("Add dependencies", true)
   private val modelComponentCheckBox = JBCheckBox("Model", true)
   private val eventComponentCheckBox = JBCheckBox("Event", true)
   private val effectComponentCheckBox = JBCheckBox("Effect", true)
@@ -87,6 +88,8 @@ class CreatorDialog(basePackageName: String) : DialogWrapper(true) {
           .addComponent(classNameLabel)
           .addComponent(classNameTextField)
       )
+      .addGap(8)
+      .addComponent(dependencyCheckBox)
       .addGap(16)
       .addComponent(componentsLabel)
       .addComponent(modelComponentCheckBox)
@@ -117,6 +120,8 @@ class CreatorDialog(basePackageName: String) : DialogWrapper(true) {
               .addComponent(classNameTextField)
           )
       )
+      .addGap(8)
+      .addComponent(dependencyCheckBox)
       .addGap(16)
       .addComponent(componentsLabel)
       .addComponent(modelComponentCheckBox)
@@ -130,6 +135,7 @@ class CreatorDialog(basePackageName: String) : DialogWrapper(true) {
   override fun doOKAction() {
     val packageName = packageNameTextField.text.orEmpty()
     val className = classNameTextField.text.orEmpty()
+    val addDependencyEnabled = dependencyCheckBox.isSelected
     val components = mutableListOf<MobiusComponent>()
 
     if (modelComponentCheckBox.isSelected) components.add(MobiusComponent.Model)
@@ -174,6 +180,7 @@ class CreatorDialog(basePackageName: String) : DialogWrapper(true) {
     _generatorConfig = generatorConfig.copy(
       packageName = packageName,
       className = className,
+      addDependencyEnabled = addDependencyEnabled,
       mobiusComponents = components
     )
 
